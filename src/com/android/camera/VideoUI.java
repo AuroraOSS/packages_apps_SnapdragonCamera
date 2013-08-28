@@ -44,6 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.view.View.OnLayoutChangeListener;
 
 import com.android.camera.CameraManager.CameraProxy;
 import com.android.camera.CameraPreference.OnPreferenceChangedListener;
@@ -52,6 +53,7 @@ import com.android.camera.ui.AbstractSettingPopup;
 import com.android.camera.ui.CameraControls;
 import com.android.camera.ui.CameraRootView;
 import com.android.camera.ui.FaceView;
+import com.android.camera.ui.FocusIndicator;
 import com.android.camera.ui.ListSubMenu;
 import com.android.camera.ui.ModuleSwitcher;
 import com.android.camera.ui.PieRenderer;
@@ -65,6 +67,7 @@ import com.android.camera.util.CameraUtil;
 public class VideoUI implements PieRenderer.PieListener,
         PreviewGestures.SingleTapListener,
         CameraRootView.MyDisplayListener,
+        FocusOverlayManager.FocusUI,
         SurfaceHolder.Callback,
         PauseButton.OnPauseButtonListener,
         CameraManager.CameraFaceDetectionCallback{
@@ -400,7 +403,7 @@ public class VideoUI implements PieRenderer.PieListener,
     private void layoutPreview(float ratio) {
         FrameLayout.LayoutParams lp = null;
 
-        float scaledTextureWidth, scaledTextureHeight;
+        float scaledTextureWidth = 0.0f, scaledTextureHeight = 0.0f;
         int rotation = CameraUtil.getDisplayRotation(mActivity);
         mScreenRatio = CameraUtil.determineRatio(ratio);
         if (mScreenRatio == CameraUtil.RATIO_16_9
@@ -503,6 +506,10 @@ public class VideoUI implements PieRenderer.PieListener,
 
         }
 
+        if (scaledTextureWidth > 0 && scaledTextureHeight > 0) {
+            mController.onScreenSizeChanged((int) scaledTextureWidth,
+                    (int) scaledTextureHeight);
+        }
     }
 
     /**
@@ -1277,5 +1284,40 @@ public class VideoUI implements PieRenderer.PieListener,
             mFaceView.setBlockDraw(true);
             mFaceView.clear();
         }
+    }
+
+    private FocusIndicator getFocusIndicator() {
+        return mPieRenderer;
+    }
+
+    @Override
+    public boolean hasFaces() {
+        return false;
+    }
+
+    @Override
+    public void clearFocus() {
+        FocusIndicator indicator = getFocusIndicator();
+        if (indicator != null) indicator.clear();
+    }
+
+    @Override
+    public void setFocusPosition(int x, int y) {
+        mPieRenderer.setFocus(x, y);
+    }
+
+    @Override
+    public void onFocusStarted(){
+        getFocusIndicator().showStart();
+    }
+
+    @Override
+    public void onFocusSucceeded(boolean timeOut) {
+        getFocusIndicator().showSuccess(timeOut);
+    }
+
+    @Override
+    public void onFocusFailed(boolean timeOut) {
+        getFocusIndicator().showFail(timeOut);
     }
 }

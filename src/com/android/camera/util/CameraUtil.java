@@ -163,7 +163,9 @@ public class CameraUtil {
 
     public static boolean isVideoSnapshotSupported(Parameters params) {
         if (params == null) return false;
-        return TRUE.equals(params.get(VIDEO_SNAPSHOT_SUPPORTED));
+        //return TRUE.equals(params.get(VIDEO_SNAPSHOT_SUPPORTED));
+        //First let me focus, TODO: Add a switch to toggle between 2 options
+        return false;
     }
 
     public static boolean isCameraHdrSupported(Parameters params) {
