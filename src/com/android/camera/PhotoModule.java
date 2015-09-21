@@ -286,6 +286,9 @@ public class PhotoModule
     private TextView mBokehTipText;
     private boolean mDepthSuccess = false;
     private boolean mSaveBokehXmp = false;
+    private boolean mShutterPressing = false;
+
+    private int mZslSavedSetting = 0;
 
     private class OpenCameraThread extends Thread {
         @Override
@@ -2114,6 +2117,7 @@ public class PhotoModule
             if (CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
                 if ( !PersistUtil.isZzhdrEnabled() ){
                     disableLongShot = true;
+                    mUI.overrideSettings(CameraSettings.KEY_ZSL, "off");
                 }
                 if (colorEffect != null & !colorEffect.equals(defaultEffect)) {
                     // Change the colorEffect to default(None effect) when HDR ON.
@@ -4899,8 +4903,11 @@ public class PhotoModule
             //HDR internally uses AE-bracketing. Disable both if not supported.
             if (notSame(pref, CameraSettings.KEY_CAMERA_HDR, settingOff) ||
                 notSame(pref, CameraSettings.KEY_AE_BRACKET_HDR, settingOff)) {
+                ListPreference zslPref = mPreferenceGroup.findPreference(CameraSettings.KEY_ZSL);
+                mZslSavedSetting = zslPref.getValue().equals("on") ? 1 : 0;
                 mUI.setPreference(CameraSettings.KEY_ZSL,settingOff);
             } else if (notSame(pref,CameraSettings.KEY_ZSL,settingOff)) {
+                mZslSavedSetting = 1;
                 mUI.setPreference(CameraSettings.KEY_CAMERA_HDR, settingOff);
                 mUI.setPreference(CameraSettings.KEY_AE_BRACKET_HDR, settingOff);
             }
