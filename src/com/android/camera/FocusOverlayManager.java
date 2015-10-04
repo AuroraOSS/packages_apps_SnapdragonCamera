@@ -63,6 +63,7 @@ public class FocusOverlayManager {
     private static final int RESET_FACE_DETECTION = 1;
     private static final int RESET_TOUCH_FOCUS_DELAY = 3000;
     private static final int RESET_FACE_DETECTION_DELAY = 3000;
+    private int mTouchFocusDuration = 3000;
     private int mState = STATE_IDLE;
     public static final int STATE_IDLE = 0; // Focus is not active.
     public static final int STATE_FOCUSING = 1; // Focus is in progress.
@@ -308,7 +309,7 @@ public class FocusOverlayManager {
             // If this is triggered by touch focus, cancel focus after a
             // while.
             if (mFocusArea != null) {
-                mHandler.sendEmptyMessageDelayed(RESET_TOUCH_FOCUS, RESET_TOUCH_FOCUS_DELAY);
+                mHandler.sendEmptyMessageDelayed(RESET_TOUCH_FOCUS, mTouchFocusDuration);
             }
             if (shutterButtonPressed) {
                 // Lock AE & AWB so users can half-press shutter and recompose.
@@ -379,6 +380,10 @@ public class FocusOverlayManager {
         mMeteringArea = null;
     }
 
+    public void setTouchFocusDuration(int duration) {
+        mTouchFocusDuration = duration;
+    }
+
     public void onSingleTapUp(int x, int y) {
         if (!mInitialized || mState == STATE_FOCUSING_SNAP_ON_FINISH) return;
 
@@ -419,7 +424,7 @@ public class FocusOverlayManager {
             updateFocusUI();
             // Reset the metering area in 3 seconds.
             mHandler.removeMessages(RESET_TOUCH_FOCUS);
-            mHandler.sendEmptyMessageDelayed(RESET_TOUCH_FOCUS, RESET_TOUCH_FOCUS_DELAY);
+            mHandler.sendEmptyMessageDelayed(RESET_TOUCH_FOCUS, mTouchFocusDuration);
         }
     }
 

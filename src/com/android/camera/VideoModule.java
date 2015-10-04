@@ -2819,6 +2819,26 @@ public class VideoModule implements CameraModule,
                 mFaceDetectionEnabled = false;
             }
         }
+
+        // Set touch-focus duration
+         String touchFocusDuration = mPreferences.getString(
+                 CameraSettings.KEY_TOUCH_FOCUS_DURATION, null);
+         if (touchFocusDuration != null) {
+             switch (touchFocusDuration) {
+                 case "0":
+                     mFocusManager.setTouchFocusDuration(2147483647);
+                     break;
+                 case "3":
+                     mFocusManager.setTouchFocusDuration(3000);
+                     break;
+                 case "5":
+                     mFocusManager.setTouchFocusDuration(5000);
+                     break;
+                 case "10":
+                     mFocusManager.setTouchFocusDuration(10000);
+                     break;
+             }
+         }
     }
 
     private boolean isDigit(String input) {
