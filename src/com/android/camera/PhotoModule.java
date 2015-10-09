@@ -2106,6 +2106,12 @@ public class PhotoModule
             disableLongShot = true;
         }
 
+        if (!Parameters.SCENE_MODE_AUTO.equals(mSceneMode)) {
+            mUI.overrideSettings(CameraSettings.KEY_SHUTTER_SPEED, "0");
+        } else {
+            mUI.overrideSettings(CameraSettings.KEY_SHUTTER_SPEED, null);
+        }
+
         // If scene mode is set, for  white balance and focus mode
         // read settings from preferences so we retain user preferences.
         if (!Parameters.SCENE_MODE_AUTO.equals(mSceneMode)) {
@@ -3230,6 +3236,12 @@ public class PhotoModule
         mRestartPreview = false;
         String zsl = mPreferences.getString(CameraSettings.KEY_ZSL,
                                   mActivity.getString(R.string.pref_camera_zsl_default));
+        String shutterSpeed = mPreferences.getString(
+                CameraSettings.KEY_SHUTTER_SPEED,
+                mActivity.getString(R.string.pref_camera_shutter_speed_default));
+        if (!shutterSpeed.equals("0")) {
+            zsl = "off";
+        }
         if(zsl.equals("on") && mSnapshotMode != CameraInfoWrapper.CAMERA_SUPPORT_MODE_ZSL
            && mCameraState != PREVIEW_STOPPED) {
             //Switch on ZSL Camera mode
@@ -3765,6 +3777,24 @@ public class PhotoModule
                 });
             }
         }
+
+        // Set manual shutter speed
+        String shutterSpeed = mPreferences.getString(
+                CameraSettings.KEY_SHUTTER_SPEED, null);
+        if (shutterSpeed != null) {
+            mParameters.set(CameraSettings.KEY_EXPOSURE_TIME, shutterSpeed);
+
+            // Disable ZSL for manual exposure
+            if (shutterSpeed.equals("0")) {
+                if (zsl.equals("on")) {
+                    mParameters.set("zsl", "on");
+                }
+            } else {
+                mParameters.set("zsl", "off");
+                zsl = "off";
+            }
+        }
+
         ParametersWrapper.setZSLMode(mParameters, zsl);
         if(zsl.equals("on") && ParametersWrapper.getSupportedZSLModes(mParameters) != null) {
             //Switch on ZSL Camera mode
@@ -4275,6 +4305,15 @@ public class PhotoModule
             }
 
             List<String> supportedFlash = mParameters.getSupportedFlashModes();
+
+            String shutterSpeed = mPreferences.getString(
+                    CameraSettings.KEY_SHUTTER_SPEED,
+                    mActivity.getString(R.string.pref_camera_shutter_speed_default));
+            if (!shutterSpeed.equals("0")) {
+                // Disable flash for manual exposure
+                flashMode = "off";
+            }
+
             if (CameraUtil.isSupported(flashMode, supportedFlash)) {
                 mParameters.setFlashMode(flashMode);
             } else {
