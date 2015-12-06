@@ -2801,36 +2801,45 @@ public class VideoModule implements CameraModule,
 
         if (CameraUtil.isSupported(faceDetection,
                 ParametersWrapper.getSupportedFaceDetectionModes(mParameters))) {
-            Log.d(TAG, "setFaceDetectionMode "+faceDetection);
+            Log.d(TAG, "setFaceDetectionMode " + faceDetection);
             ParametersWrapper.setFaceDetectionMode(mParameters, faceDetection);
-            if(faceDetection.equals("on") && mFaceDetectionEnabled == false) {
+            if (faceDetection.equals("on") && mFaceDetectionEnabled == false) {
                 mFaceDetectionEnabled = true;
                 startFaceDetection();
-            } else if(faceDetection.equals("off") && mFaceDetectionEnabled == true) {
+            } else if (faceDetection.equals("off") && mFaceDetectionEnabled == true) {
                 stopFaceDetection();
                 mFaceDetectionEnabled = false;
+
+                // Set touch-focus duration
+                String touchFocusDuration = mPreferences.getString(
+                        CameraSettings.KEY_TOUCH_FOCUS_DURATION, null);
+                if (touchFocusDuration != null) {
+                    switch (touchFocusDuration) {
+                        case "0":
+                            mFocusManager.setTouchFocusDuration(200);
+                            break;
+                        case "3":
+                            mFocusManager.setTouchFocusDuration(3000);
+                            break;
+                        case "5":
+                            mFocusManager.setTouchFocusDuration(5000);
+                            break;
+                        case "10":
+                            mFocusManager.setTouchFocusDuration(10000);
+                            break;
+                        case "0x7FFFFFFF":
+                            mFocusManager.setTouchFocusDuration(0x7FFFFFFF);
+                            break;
+                    }
+
+                    if (touchFocusDuration.equals("0")) {
+                        mFocusManager.setTouchFocusAeLock(false);
+                    } else {
+                        mFocusManager.setTouchFocusAeLock(true);
+                    }
+                }
             }
         }
-
-        // Set touch-focus duration
-         String touchFocusDuration = mPreferences.getString(
-                 CameraSettings.KEY_TOUCH_FOCUS_DURATION, null);
-         if (touchFocusDuration != null) {
-             switch (touchFocusDuration) {
-                 case "0":
-                     mFocusManager.setTouchFocusDuration(2147483647);
-                     break;
-                 case "3":
-                     mFocusManager.setTouchFocusDuration(3000);
-                     break;
-                 case "5":
-                     mFocusManager.setTouchFocusDuration(5000);
-                     break;
-                 case "10":
-                     mFocusManager.setTouchFocusDuration(10000);
-                     break;
-             }
-         }
     }
 
     private boolean isDigit(String input) {

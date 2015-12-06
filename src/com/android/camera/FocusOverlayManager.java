@@ -63,6 +63,7 @@ public class FocusOverlayManager {
     private static final int RESET_FACE_DETECTION = 1;
     private static final int RESET_TOUCH_FOCUS_DELAY = 3000;
     private static final int RESET_FACE_DETECTION_DELAY = 3000;
+    private boolean mTouchFocusAeLock = false;
     private int mTouchFocusDuration = 3000;
     private int mState = STATE_IDLE;
     public static final int STATE_IDLE = 0; // Focus is not active.
@@ -286,8 +287,10 @@ public class FocusOverlayManager {
             if (focused) {
                 mState = STATE_SUCCESS;
                 // Lock exposure and white balance
-                setAeAwbLock(true);
-                mListener.setFocusParameters();
+                if (mTouchFocusAeLock) {
+                    setAeAwbLock(true);
+                    mListener.setFocusParameters();
+                }
             } else {
                 mState = STATE_FAIL;
             }
@@ -300,8 +303,10 @@ public class FocusOverlayManager {
             if (focused) {
                 mState = STATE_SUCCESS;
                 // Lock exposure and white balance
-                setAeAwbLock(true);
-                mListener.setFocusParameters();
+                if (mTouchFocusAeLock) {
+                    setAeAwbLock(true);
+                    mListener.setFocusParameters();
+                }
             } else {
                 mState = STATE_FAIL;
             }
@@ -380,6 +385,10 @@ public class FocusOverlayManager {
         mMeteringArea = null;
     }
 
+    public void setTouchFocusAeLock(boolean aeLock) {
+        mTouchFocusAeLock = aeLock;
+    }
+
     public void setTouchFocusDuration(int duration) {
         mTouchFocusDuration = duration;
     }
@@ -415,6 +424,11 @@ public class FocusOverlayManager {
 
         // Stop face detection because we want to specify focus and metering area.
         mListener.stopFaceDetection();
+
+        if (!mTouchFocusAeLock) {
+            setAeAwbLock(true);
+            mListener.setFocusParameters();
+        }
 
         // Set the focus area and metering area.
         mListener.setFocusParameters();
