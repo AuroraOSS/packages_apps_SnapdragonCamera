@@ -2810,33 +2810,32 @@ public class VideoModule implements CameraModule,
                 stopFaceDetection();
                 mFaceDetectionEnabled = false;
 
-                // Set touch-focus duration
-                String touchFocusDuration = mPreferences.getString(
-                        CameraSettings.KEY_TOUCH_FOCUS_DURATION, null);
-                if (touchFocusDuration != null) {
-                    switch (touchFocusDuration) {
-                        case "0":
-                            mFocusManager.setTouchFocusDuration(200);
-                            break;
-                        case "3":
-                            mFocusManager.setTouchFocusDuration(3000);
-                            break;
-                        case "5":
-                            mFocusManager.setTouchFocusDuration(5000);
-                            break;
-                        case "10":
-                            mFocusManager.setTouchFocusDuration(10000);
-                            break;
-                        case "0x7FFFFFFF":
-                            mFocusManager.setTouchFocusDuration(0x7FFFFFFF);
-                            break;
-                    }
+        // Set touch-focus duration
+        String touchFocusDuration = mPreferences.getString(
+                CameraSettings.KEY_VIDEO_TOUCH_FOCUS_DURATION,
+                mActivity.getString(R.string.pref_video_touchfocus_duration_default));
+                switch (touchFocusDuration) {
+                    case "0":
+                        mFocusManager.setTouchFocusDuration(200);
+                        break;
+                    case "3":
+                        mFocusManager.setTouchFocusDuration(3000);
+                        break;
+                    case "5":
+                        mFocusManager.setTouchFocusDuration(5000);
+                        break;
+                    case "10":
+                        mFocusManager.setTouchFocusDuration(10000);
+                        break;
+                    case "0x7FFFFFFF":
+                        mFocusManager.setTouchFocusDuration(0x7FFFFFFF);
+                        break;
+                }
 
-                    if (touchFocusDuration.equals("0")) {
-                        mFocusManager.setTouchFocusAeLock(false);
-                    } else {
-                        mFocusManager.setTouchFocusAeLock(true);
-                    }
+                if (touchFocusDuration.equals("0")) {
+                    mFocusManager.setTouchFocusAeLock(false);
+                } else {
+                    mFocusManager.setTouchFocusAeLock(true);
                 }
             }
         }

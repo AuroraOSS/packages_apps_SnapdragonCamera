@@ -278,6 +278,7 @@ public class CameraSettings {
     public static final String KEY_SELFIE_FLASH = "pref_selfie_flash_key";
 
     public static final String KEY_TOUCH_FOCUS_DURATION = "pref_camera_touchfocus_duration_key";
+    public static final String KEY_VIDEO_TOUCH_FOCUS_DURATION = "pref_video_touchfocus_duration_key";
 
     public static final String EXPOSURE_DEFAULT_VALUE = "0";
 
