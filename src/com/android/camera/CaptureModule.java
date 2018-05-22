@@ -1091,8 +1091,13 @@ public class CaptureModule implements CameraModule, PhotoController,
         try {
             if (!mSurfaceReady) {
                 if (!mSurfaceReadyLock.tryAcquire(2000, TimeUnit.MILLISECONDS)) {
-                    Log.d(TAG, "Time out waiting for surface.");
-                    throw new RuntimeException("Time out waiting for surface.");
+                    if (mPaused) {
+                        Log.d(TAG, "mPaused status occur Time out waiting for surface.");
+                        throw new IllegalStateException("Paused Time out waiting for surface.");
+                    } else {
+                        Log.d(TAG, "Time out waiting for surface.");
+                        throw new RuntimeException("Time out waiting for surface.");
+                    }
                 }
                 mSurfaceReadyLock.release();
             }
@@ -1250,6 +1255,8 @@ public class CaptureModule implements CameraModule, PhotoController,
                 mCameraDevice[id].createCaptureSession(list, captureSessionCallback, null);
             }
         } catch (CameraAccessException e) {
+        } catch (IllegalStateException e) {
+            Log.v(TAG, "createSession: mPaused status occur Time out waiting for surface ");
         }
     }
 
@@ -1949,7 +1956,12 @@ public class CaptureModule implements CameraModule, PhotoController,
                                             if (mBokehEnabled && bokehBytes != null && bokehBytes.size() > 2) {
                                                 GImage gImage = new GImage(bokehBytes.get(1), "image/jpeg");
                                                 GDepth gDepth = GDepth.createGDepth(bokehBytes.get(bokehBytes.size()-1));
-                                                gDepth.setRoi(new Rect(0, 0, image.getWidth(), image.getHeight()));
+                                                try {
+                                                    gDepth.setRoi(new Rect(0, 0, image.getWidth(), image.getHeight()));
+                                                } catch (IllegalStateException e) {
+                                                    e.printStackTrace();
+                                                    return;
+                                                }
                                                 mActivity.getMediaSaveService().addXmpImage(bokehBytes.get(0), gImage,
                                                         gDepth, title, date, null, image.getWidth(), image.getHeight(),
                                                         orientation, exif, mOnMediaSavedListener, mContentResolver, "jpeg");
@@ -3306,6 +3318,7 @@ public class CaptureModule implements CameraModule, PhotoController,
         mIsRecordingVideo = true;
         mMediaRecorderPausing = false;
 
+        checkAndPlayRecordSound(cameraId, true);
         mActivity.updateStorageSpaceAndHint();
         if (mActivity.getStorageSpaceBytes() <= Storage.LOW_STORAGE_THRESHOLD_BYTES) {
             Log.w(TAG, "Storage issue, ignore the start request");
@@ -3644,6 +3657,7 @@ public class CaptureModule implements CameraModule, PhotoController,
         mStopRecPending = true;
         boolean shouldAddToMediaStoreNow = false;
         // Stop recording
+        checkAndPlayRecordSound(cameraId, false);
         mFrameProcessor.setVideoOutputSurface(null);
         mFrameProcessor.onClose();
         closePreviewSession();
@@ -4508,6 +4522,16 @@ public class CaptureModule implements CameraModule, PhotoController,
                 builder.addTarget(surface);
             }
             return;
+        }
+    }
+
+    private void checkAndPlayRecordSound(int id, boolean isStarted) {
+        if (id == getMainCameraId()) {
+            String value = mSettingsManager.getValue(SettingsManager.KEY_SHUTTER_SOUND);
+            if (value != null && value.equals("on") && mSound != null) {
+                mSound.play(isStarted? MediaActionSound.START_VIDEO_RECORDING
+                        : MediaActionSound.STOP_VIDEO_RECORDING);
+            }
         }
     }
 
