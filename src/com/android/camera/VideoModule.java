@@ -1106,8 +1106,10 @@ public class VideoModule implements CameraModule,
     @Override
     public void resizeForPreviewAspectRatio() {
         setPreviewFrameLayoutCameraOrientation();
-        mUI.setAspectRatio(
-                (double) mProfile.videoFrameWidth / mProfile.videoFrameHeight);
+        if (mProfile != null) {
+            mUI.setAspectRatio(
+                    (double) mProfile.videoFrameWidth / mProfile.videoFrameHeight);
+        }
     }
 
     @Override
