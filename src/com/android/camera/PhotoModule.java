@@ -239,7 +239,7 @@ public class PhotoModule
 
     private static final boolean PERSIST_SKIP_MEM_CHECK = PersistUtil.isSkipMemoryCheckEnabled();
 
-    private static final String PERSISI_BOKEH_DEBUG = "persist.camera.bokeh.debug";
+    private static final String PERSISI_BOKEH_DEBUG = "persist.sys.camera.bokeh.debug";
     private static final boolean PERSIST_BOKEH_DEBUG_CHECK =
             android.os.SystemProperties.getBoolean(PERSISI_BOKEH_DEBUG, false);
     private static final int MINIMUM_BRIGHTNESS = 0;
