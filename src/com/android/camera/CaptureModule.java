@@ -3482,9 +3482,11 @@ public class CaptureModule implements CameraModule, PhotoController,
 
     private void updateVideoSnapshotSize() {
         mVideoSnapshotSize = mVideoSize;
-        if (is4kSize(mVideoSize) && is4kSize(mVideoSnapshotSize)) {
-            mVideoSnapshotSize = getMaxPictureSizeLessThan4k();
+        if (!is4kSize(mVideoSize) && (mHighSpeedCaptureRate == 0)) {
+            mVideoSnapshotSize = getMaxPictureSizeLiveshot();
         }
+        Log.d(TAG, "mVideoSnapshotSize: " +
+                mVideoSnapshotSize.getWidth() + ", " + mVideoSnapshotSize.getHeight());
         Size[] thumbSizes = mSettingsManager.getSupportedThumbnailSizes(getMainCameraId());
         mVideoSnapshotThumbSize = getOptimalPreviewSize(mVideoSnapshotSize, thumbSizes); // get largest thumb size
     }
@@ -5187,6 +5189,31 @@ public class CaptureModule implements CameraModule, PhotoController,
 
         int optimalPickIndex = CameraUtil.getOptimalPreviewSize(mActivity, points, targetRatio);
         return (optimalPickIndex == -1) ? null : prevSizes[optimalPickIndex];
+    }
+
+    private Size getMaxPictureSizeLiveshot() {
+        Size[] sizes = mSettingsManager.getSupportedOutputSize(getMainCameraId(), ImageFormat.JPEG);
+        float ratio = (float) mVideoSize.getWidth() / mVideoSize.getHeight();
+        Size optimalSize = null;
+        for (Size size : sizes) {
+            float pictureRatio = (float) size.getWidth() / size.getHeight();
+            if (Math.abs(pictureRatio - ratio) > 0.01) continue;
+            if (optimalSize == null || size.getWidth() > optimalSize.getWidth()) {
+                optimalSize = size;
+            }
+        }
+
+        // Cannot find one that matches the aspect ratio. This should not happen.
+        // Ignore the requirement.
+        if (optimalSize == null) {
+            Log.w(TAG, "getMaxPictureSizeLiveshot: no picture size match the aspect ratio");
+            for (Size size : sizes) {
+                if (optimalSize == null || size.getWidth() > optimalSize.getWidth()) {
+                    optimalSize = size;
+                }
+            }
+        }
+        return optimalSize;
     }
 
     private Size getMaxPictureSizeLessThan4k() {
