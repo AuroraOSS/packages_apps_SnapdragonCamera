@@ -149,6 +149,7 @@ public class SettingsManager implements ListMenu.SettingsListener {
     public static final String KEY_HISTOGRAM = "pref_camera2_histogram_key";
     public static final String KEY_AUTO_HDR = "pref_camera2_auto_hdr_key";
     public static final String KEY_HDR = "pref_camera2_hdr_key";
+    public static final String KEY_VIDEO_HDR_VALUE = "pref_camera2_video_hdr_key";
     public static final String KEY_SAVERAW = "pref_camera2_saveraw_key";
     public static final String KEY_ZOOM = "pref_camera2_zoom_key";
     public static final String KEY_QCFA = "pref_camera2_qcfa_key";
@@ -1088,6 +1089,18 @@ public class SettingsManager implements ListMenu.SettingsListener {
                 return false;
         }
         return true;
+    }
+
+    public boolean isZZHDRSupported() {
+        int[] modes = null;
+        try {
+            modes = mCharacteristics.get(getCurrentCameraId())
+                    .get(CaptureModule.support_video_hdr_modes);
+        } catch (IllegalArgumentException e) {
+            Log.w(TAG, "cannot find vendor tag: " +
+                    CaptureModule.support_video_hdr_modes.toString());
+        }
+        return modes != null && modes.length > 1;
     }
 
     public boolean isAutoExposureRegionSupported(int id) {
