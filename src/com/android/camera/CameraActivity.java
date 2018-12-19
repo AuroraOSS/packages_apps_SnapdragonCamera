@@ -1526,12 +1526,12 @@ public class CameraActivity extends Activity
         } else {
             // If the activity has not been started using an explicit intent,
             // read the module index from the last time the user changed modes
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             moduleIndex = prefs.getInt(CameraSettings.KEY_STARTUP_MODULE_INDEX, -1);
             if ((moduleIndex == ModuleSwitcher.GCAM_MODULE_INDEX &&
                     !GcamHelper.hasGcamCapture()) || moduleIndex < 0) {
                 moduleIndex = ModuleSwitcher.PHOTO_MODULE_INDEX;
-            }
+            }*/
         }
 
         boolean cam2on = PersistUtil.getCamera2Mode();

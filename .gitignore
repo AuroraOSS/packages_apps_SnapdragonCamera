@@ -9,3 +9,11 @@ libs/
 gen/
 .idea/
 .gitignore
+.project.properties
+.externalNativeBuild/
+tests/stress/gen/
+.gradle/
+local.properties
+gradle/
+build/
+gradlew*

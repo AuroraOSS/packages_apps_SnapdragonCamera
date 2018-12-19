@@ -1,0 +1,100 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        applicationId 'org.codeaurora.snapcam'
+    }
+
+    signingConfigs {
+        release {
+            Properties props = new Properties()
+            props.load(new FileInputStream(file("local.properties")))
+            storeFile file(props['keystore'])
+            storePassword props['keystore.password']
+            keyAlias props['keyAlias']
+            keyPassword props['keyPassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard.flags'
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['res', 'res_p']
+            java.srcDirs = ['src', 'src_pd', 'src_pd_gcam', 'src_wrapper', '../hex-camlibs/XMPCore/src']
+            manifest.srcFile 'AndroidManifest.xml'
+            renderscript.srcDirs = ['rs']
+            jniLibs {
+                srcDir 'jniLibs'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('jni/Android.mk')
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    google()
+}
+
+final String SUPPORT_LIBS_VERSION = '28.0.0'
+
+dependencies {
+    implementation fileTree(dir: '../hex-camlibs', include: ['*.jar'])
+    implementation "com.android.support:support-v4:${SUPPORT_LIBS_VERSION}"
+    implementation "com.android.support:support-v13:${SUPPORT_LIBS_VERSION}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+}

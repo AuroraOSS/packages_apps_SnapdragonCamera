@@ -220,12 +220,6 @@
     <string name="camera_label" msgid="6346560772074764302">"Kamera"</string>
     <string name="video_camera_label" msgid="2899292505526427293">"Kamkorder"</string>
     <string name="wait" msgid="8600187532323801552">"Sila tunggu..."</string>
-    <string name="no_storage" product="nosdcard" msgid="7335975356349008814">"Lekapkan storan USB sebelum menggunakan kamera."</string>
-    <string name="no_storage" product="default" msgid="5137703033746873624">"Masukkan kad SD sebelum menggunakan kamera."</string>
-    <string name="preparing_sd" product="nosdcard" msgid="6104019983528341353">"Menyediakan storan USB..."</string>
-    <string name="preparing_sd" product="default" msgid="2914969119574812666">"Menyediakan kad SD..."</string>
-    <string name="access_sd_fail" product="nosdcard" msgid="8147993984037859354">"Tidak dapat mengakses storan USB."</string>
-    <string name="access_sd_fail" product="default" msgid="1584968646870054352">"Tidak dapat mengakses kad SD."</string>
     <string name="review_cancel" msgid="8188009385853399254">"BATAL"</string>
     <string name="review_ok" msgid="1156261588693116433">"SELESAI"</string>
     <string name="time_lapse_title" msgid="4360632427760662691">"Rakaman selang masa"</string>
@@ -284,8 +278,6 @@
     <!-- no translation found for pref_camera_hdr_default (1336869406134365882) -->
     <skip />
     <string name="dialog_ok" msgid="6263301364153382152">"OK"</string>
-    <string name="spaceIsLow_content" product="nosdcard" msgid="4401325203349203177">"Storan USB anda kehabisan ruang. Tukar tetapan mutu atau padamkan beberapa imej atau fail lain."</string>
-    <string name="spaceIsLow_content" product="default" msgid="1732882643101247179">"Kad SD anda kehabisan ruang. Tukar tetapan mutu atau padamkan beberapa imej atau fail lain."</string>
     <string name="video_reach_size_limit" msgid="6179877322015552390">"Had saiz dicapai."</string>
     <string name="pano_too_fast_prompt" msgid="2823839093291374709">"Trlalu cepat"</string>
     <string name="pano_dialog_prepare_preview" msgid="4788441554128083543">"Menyediakan panorama"</string>
