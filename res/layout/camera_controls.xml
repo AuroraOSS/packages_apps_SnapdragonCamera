@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,7 +15,7 @@
 <com.android.camera.ui.CameraControls xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/camera_controls"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <View
         android:id="@+id/blocker"
@@ -26,12 +25,12 @@
         android:clickable="true" />
 
     <include
+        layout="@layout/menu_indicators"
         android:layout_width="64dip"
         android:layout_height="64dip"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="8dip"
         android:layout_marginRight="-8dip"
-        layout="@layout/menu_indicators" />
+        android:layout_marginBottom="8dip" />
 
     <com.android.camera.ui.RotateImageView
         android:id="@+id/menu"
@@ -50,8 +49,8 @@
         style="@style/SwitcherButton"
         android:layout_gravity="bottom|left"
         android:layout_marginBottom="2dip"
-        android:scaleType="center"
-        android:contentDescription="@string/accessibility_mode_picker" />
+        android:contentDescription="@string/accessibility_mode_picker"
+        android:scaleType="center" />
 
     <com.android.camera.ShutterButton
         android:id="@+id/shutter_button"
@@ -67,7 +66,6 @@
 
     <ImageView
         android:id="@+id/video_button"
-        android:visibility="invisible"
         android:layout_width="@dimen/shutter_size"
         android:layout_height="@dimen/shutter_size"
         android:layout_gravity="bottom|center_horizontal"
@@ -76,7 +74,8 @@
         android:contentDescription="@string/accessibility_shutter_button"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/btn_new_shutter_video" />
+        android:src="@drawable/btn_new_shutter_video"
+        android:visibility="invisible" />
 
     <com.android.camera.ui.RotateImageView
         android:id="@+id/exit_panorama"
@@ -120,9 +119,8 @@
         android:id="@+id/remaining_photos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         android:orientation="horizontal"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/remaining_photos_text"

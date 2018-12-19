@@ -18,7 +18,10 @@
 
     <color name="colorAccent">#fc636b</color>
 
-    <color name="colorBackground">#545454</color>
-    <color name="colorBackgroundDark">#343434</color>
+    <color name="colorBackground">#343434</color>
+    <color name="colorBackgroundDark">#242424</color>
 
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">@color/colorAccent</color>
 </resources>

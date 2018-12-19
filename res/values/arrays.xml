@@ -360,15 +360,15 @@
     </string-array>
 
     <array name="camera_flashmode_icons" translatable="false">
-        <item>@drawable/ic_flash_off_holo_light</item>
-        <item>@drawable/ic_flash_auto_holo_light</item>
-        <item>@drawable/ic_flash_on_holo_light</item>
+        <item>@drawable/ic_flash_off</item>
+        <item>@drawable/ic_flash_auto</item>
+        <item>@drawable/ic_flash_on</item>
     </array>
 
     <array name="camera_flashmode_largeicons" translatable="false">
-        <item>@drawable/ic_flash_off_holo_light</item>
-        <item>@drawable/ic_flash_auto_holo_light</item>
-        <item>@drawable/ic_flash_on_holo_light</item>
+        <item>@drawable/ic_flash_off</item>
+        <item>@drawable/ic_flash_auto</item>
+        <item>@drawable/ic_flash_on</item>
     </array>
 
     <!-- Videocamera Preferences flash mode dialog box entries -->
@@ -388,13 +388,13 @@
     </string-array>
 
     <array name="video_flashmode_icons" translatable="false">
-        <item>@drawable/ic_flash_off_holo_light</item>
-        <item>@drawable/ic_flash_on_holo_light</item>
+        <item>@drawable/ic_flash_off</item>
+        <item>@drawable/ic_flash_on</item>
     </array>
 
     <array name="video_flashmode_largeicons" translatable="false">
-        <item>@drawable/ic_flash_off_holo_light</item>
-        <item>@drawable/ic_flash_on_holo_light</item>
+        <item>@drawable/ic_flash_off</item>
+        <item>@drawable/ic_flash_on</item>
     </array>
 
     <string-array name="pref_camera_recordlocation_entryvalues" translatable="false">
@@ -414,12 +414,12 @@
 
     <array name="camera_recordlocation_icons" translatable="false">
         <item>@drawable/ic_location_off</item>
-        <item>@drawable/ic_location</item>
+        <item>@drawable/ic_location_on</item>
     </array>
 
     <array name="camera_recordlocation_largeicons" translatable="false">
         <item>@drawable/ic_location_off</item>
-        <item>@drawable/ic_location</item>
+        <item>@drawable/ic_location_on</item>
     </array>
 
     <!-- Camera Preferences White Balance dialog box entries -->
@@ -464,11 +464,11 @@
     </array>
 
     <array name="camera_wb_indicators" translatable="false">
-        <item>@drawable/ic_indicator_wb_tungsten</item>
-        <item>@drawable/ic_indicator_wb_fluorescent</item>
-        <item>@drawable/ic_indicator_wb_off</item>
-        <item>@drawable/ic_indicator_wb_daylight</item>
-        <item>@drawable/ic_indicator_wb_cloudy</item>
+        <item>@drawable/ic_wb_incandescent</item>
+        <item>@drawable/ic_wb_fluorescent</item>
+        <item>@drawable/ic_wb_auto</item>
+        <item>@drawable/ic_wb_sunlight</item>
+        <item>@drawable/ic_wb_cloudy</item>
     </array>
 
     <string-array name="pref_camera_chromaflash_entries" translatable="false">
@@ -622,8 +622,8 @@
     </string-array>
 
     <string-array name="pref_camera_hdr_plus_icons" translatable="false">
-        <item>@drawable/ic_hdr_plus_disabled</item>
-        <item>@drawable/ic_hdr_plus_normal</item>
+        <item>@drawable/ic_hdr_off</item>
+        <item>@drawable/ic_hdr_on</item>
     </string-array>
 
     <string-array name="pref_camera_hdr_plus_entryvalues" translatable="false">
@@ -644,7 +644,7 @@
 
     <string-array name="pref_camera_hdr_icons" translatable="false">
         <item>@drawable/ic_hdr_off</item>
-        <item>@drawable/ic_hdr</item>
+        <item>@drawable/ic_hdr_on</item>
     </string-array>
 
     <string-array name="pref_camera_bokeh_icons" translatable="false">

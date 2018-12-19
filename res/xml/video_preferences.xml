@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!-- Copyright (C) 2008 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,203 +15,202 @@
      limitations under the License.
 -->
 
-<PreferenceGroup
-        xmlns:camera="http://schemas.android.com/apk/res-auto"
-        camera:title="@string/pref_camcorder_settings_category">
+<PreferenceGroup xmlns:camera="http://schemas.android.com/apk/res-auto"
+    camera:title="@string/pref_camcorder_settings_category">
     <IconListPreference
-            camera:key="pref_video_quality_key"
-            camera:title="@string/pref_video_quality_title"
-            camera:entries="@array/pref_video_quality_entries"
-            camera:singleIcon="@drawable/ic_settings_quality"
-            camera:entryValues="@array/pref_video_quality_entryvalues"/>
+        camera:entries="@array/pref_video_quality_entries"
+        camera:entryValues="@array/pref_video_quality_entryvalues"
+        camera:key="pref_video_quality_key"
+        camera:singleIcon="@drawable/ic_settings_quality"
+        camera:title="@string/pref_video_quality_title" />
     <ListPreference
-            camera:key="pref_camera_videoencoder_key"
-            camera:defaultValue="@string/pref_camera_videoencoder_default"
-            camera:title="@string/pref_camera_videoencoder_title"
-            camera:entries="@array/pref_camera_videoencoder_entries"
-            camera:entryValues="@array/pref_camera_videoencoder_entryvalues" />
+        camera:defaultValue="@string/pref_camera_videoencoder_default"
+        camera:entries="@array/pref_camera_videoencoder_entries"
+        camera:entryValues="@array/pref_camera_videoencoder_entryvalues"
+        camera:key="pref_camera_videoencoder_key"
+        camera:title="@string/pref_camera_videoencoder_title" />
     <ListPreference
-            camera:key="pref_camera_audioencoder_key"
-            camera:defaultValue="@string/pref_camera_audioencoder_default"
-            camera:title="@string/pref_camera_audioencoder_title"
-            camera:entries="@array/pref_camera_audioencoder_entries"
-            camera:entryValues="@array/pref_camera_audioencoder_entryvalues" />
+        camera:defaultValue="@string/pref_camera_audioencoder_default"
+        camera:entries="@array/pref_camera_audioencoder_entries"
+        camera:entryValues="@array/pref_camera_audioencoder_entryvalues"
+        camera:key="pref_camera_audioencoder_key"
+        camera:title="@string/pref_camera_audioencoder_title" />
     <ListPreference
-            camera:key="pref_camera_video_cds_mode_key"
-            camera:defaultValue="@string/pref_camera_video_cds_default"
-            camera:title="@string/pref_camera_video_cds_title"
-            camera:entries="@array/pref_camera_video_cds_entries"
-            camera:entryValues="@array/pref_camera_video_cds_entryvalues" />
+        camera:defaultValue="@string/pref_camera_video_cds_default"
+        camera:entries="@array/pref_camera_video_cds_entries"
+        camera:entryValues="@array/pref_camera_video_cds_entryvalues"
+        camera:key="pref_camera_video_cds_mode_key"
+        camera:title="@string/pref_camera_video_cds_title" />
     <ListPreference
-            camera:key="pref_camera_video_tnr_mode_key"
-            camera:defaultValue="@string/pref_camera_video_tnr_default"
-            camera:title="@string/pref_camera_video_tnr_title"
-            camera:entries="@array/pref_camera_video_tnr_entries"
-            camera:entryValues="@array/pref_camera_video_tnr_entryvalues" />
+        camera:defaultValue="@string/pref_camera_video_tnr_default"
+        camera:entries="@array/pref_camera_video_tnr_entries"
+        camera:entryValues="@array/pref_camera_video_tnr_entryvalues"
+        camera:key="pref_camera_video_tnr_mode_key"
+        camera:title="@string/pref_camera_video_tnr_title" />
     <IconListPreference
-            camera:key="pref_camera_video_duration_key"
-            camera:defaultValue="@string/pref_camera_video_duration_default"
-            camera:title="@string/pref_camera_video_duration_title"
-            camera:singleIcon="@drawable/ic_settings_duration"
-            camera:entries="@array/pref_camera_video_duration_entries"
-            camera:entryValues="@array/pref_camera_video_duration_entryvalues" />
+        camera:defaultValue="@string/pref_camera_video_duration_default"
+        camera:entries="@array/pref_camera_video_duration_entries"
+        camera:entryValues="@array/pref_camera_video_duration_entryvalues"
+        camera:key="pref_camera_video_duration_key"
+        camera:singleIcon="@drawable/ic_settings_duration"
+        camera:title="@string/pref_camera_video_duration_title" />
     <IconListPreference
-            camera:key="pref_video_time_lapse_frame_interval_key"
-            camera:defaultValue="@string/pref_video_time_lapse_frame_interval_default"
-            camera:title="@string/pref_video_time_lapse_frame_interval_title"
-            camera:entries="@array/pref_video_time_lapse_frame_interval_entries"
-            camera:entryValues="@array/pref_video_time_lapse_frame_interval_entryvalues"/>
+        camera:defaultValue="@string/pref_video_time_lapse_frame_interval_default"
+        camera:entries="@array/pref_video_time_lapse_frame_interval_entries"
+        camera:entryValues="@array/pref_video_time_lapse_frame_interval_entryvalues"
+        camera:key="pref_video_time_lapse_frame_interval_key"
+        camera:title="@string/pref_video_time_lapse_frame_interval_title" />
     <IconListPreference
-            camera:key="pref_camera_video_flashmode_key"
-            camera:defaultValue="@string/pref_camera_video_flashmode_default"
-            camera:title="@string/pref_camera_flashmode_title"
-            camera:icons="@array/video_flashmode_icons"
-            camera:largeIcons="@array/video_flashmode_largeicons"
-            camera:singleIcon="@drawable/ic_settings_flash"
-            camera:entries="@array/pref_camera_video_flashmode_entries"
-            camera:labelList="@array/pref_camera_video_flashmode_labels"
-            camera:entryValues="@array/pref_camera_video_flashmode_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_video_flashmode_default"
+        camera:entries="@array/pref_camera_video_flashmode_entries"
+        camera:entryValues="@array/pref_camera_video_flashmode_entryvalues"
+        camera:icons="@array/video_flashmode_icons"
+        camera:key="pref_camera_video_flashmode_key"
+        camera:labelList="@array/pref_camera_video_flashmode_labels"
+        camera:largeIcons="@array/video_flashmode_largeicons"
+        camera:singleIcon="@drawable/ic_settings_flash"
+        camera:title="@string/pref_camera_flashmode_title" />
     <IconListPreference
-            camera:key="pref_camera_whitebalance_key"
-            camera:defaultValue="@string/pref_camera_whitebalance_default"
-            camera:title="@string/pref_camera_whitebalance_title"
-            camera:icons="@array/whitebalance_icons"
-            camera:largeIcons="@array/whitebalance_largeicons"
-            camera:entries="@array/pref_camera_whitebalance_entries"
-            camera:labelList="@array/pref_camera_whitebalance_labels"
-            camera:singleIcon="@drawable/ic_settings_lightsource"
-            camera:entryValues="@array/pref_camera_whitebalance_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_whitebalance_default"
+        camera:entries="@array/pref_camera_whitebalance_entries"
+        camera:entryValues="@array/pref_camera_whitebalance_entryvalues"
+        camera:icons="@array/whitebalance_icons"
+        camera:key="pref_camera_whitebalance_key"
+        camera:labelList="@array/pref_camera_whitebalance_labels"
+        camera:largeIcons="@array/whitebalance_largeicons"
+        camera:singleIcon="@drawable/ic_settings_lightsource"
+        camera:title="@string/pref_camera_whitebalance_title" />
     <IconListPreference
-            camera:key="pref_camera_id_key"
-            camera:defaultValue="@string/pref_camera_id_default"
-            camera:title="@string/pref_camera_id_title"
-            camera:icons="@array/camera_id_icons"
-            camera:entries="@array/camera_id_entries"
-            camera:labelList="@array/camera_id_labels"
-            camera:largeIcons="@array/camera_id_largeicons"/>
+        camera:defaultValue="@string/pref_camera_id_default"
+        camera:entries="@array/camera_id_entries"
+        camera:icons="@array/camera_id_icons"
+        camera:key="pref_camera_id_key"
+        camera:labelList="@array/camera_id_labels"
+        camera:largeIcons="@array/camera_id_largeicons"
+        camera:title="@string/pref_camera_id_title" />
     <IconListPreference
-            camera:key="pref_video_effect_key"
-            camera:defaultValue="@string/pref_video_effect_default"
-            camera:title="@string/pref_video_effect_title"
-            camera:icons="@array/video_effect_icons"
-            camera:largeIcons="@array/video_effect_icons"
-            camera:entries="@array/pref_video_effect_entries"
-            camera:entryValues="@array/pref_video_effect_entryvalues" />
+        camera:defaultValue="@string/pref_video_effect_default"
+        camera:entries="@array/pref_video_effect_entries"
+        camera:entryValues="@array/pref_video_effect_entryvalues"
+        camera:icons="@array/video_effect_icons"
+        camera:key="pref_video_effect_key"
+        camera:largeIcons="@array/video_effect_icons"
+        camera:title="@string/pref_video_effect_title" />
     <RecordLocationPreference
-            camera:key="pref_camera_recordlocation_key"
-            camera:defaultValue="@string/pref_camera_recordlocation_default"
-            camera:title="@string/pref_camera_recordlocation_title"
-            camera:icons="@array/camera_recordlocation_icons"
-            camera:singleIcon="@drawable/ic_settings_location"
-            camera:largeIcons="@array/camera_recordlocation_largeicons"
-            camera:entries="@array/pref_camera_recordlocation_entries"
-            camera:entryValues="@array/pref_camera_recordlocation_entryvalues" />
+        camera:defaultValue="@string/pref_camera_recordlocation_default"
+        camera:entries="@array/pref_camera_recordlocation_entries"
+        camera:entryValues="@array/pref_camera_recordlocation_entryvalues"
+        camera:icons="@array/camera_recordlocation_icons"
+        camera:key="pref_camera_recordlocation_key"
+        camera:largeIcons="@array/camera_recordlocation_largeicons"
+        camera:singleIcon="@drawable/ic_settings_location"
+        camera:title="@string/pref_camera_recordlocation_title" />
     <ListPreference
-            camera:key="pref_camera_powermode_key"
-            camera:defaultValue="@string/pref_camera_powermode_default"
-            camera:title="@string/pref_camera_powermode_title"
-            camera:entries="@array/pref_camera_powermode_entries"
-            camera:entryValues="@array/pref_camera_powermode_entryvalues" />
+        camera:defaultValue="@string/pref_camera_powermode_default"
+        camera:entries="@array/pref_camera_powermode_entries"
+        camera:entryValues="@array/pref_camera_powermode_entryvalues"
+        camera:key="pref_camera_powermode_key"
+        camera:title="@string/pref_camera_powermode_title" />
     <IconListPreference
-            camera:key="pref_camera_dis_key"
-            camera:defaultValue="@string/pref_camera_dis_default"
-            camera:title="@string/pref_camera_dis_title"
-            camera:entries="@array/pref_camera_dis_entries"
-            camera:singleIcon="@drawable/ic_eis_menu"
-            camera:entryValues="@array/pref_camera_dis_entryvalues" />
+        camera:defaultValue="@string/pref_camera_dis_default"
+        camera:entries="@array/pref_camera_dis_entries"
+        camera:entryValues="@array/pref_camera_dis_entryvalues"
+        camera:key="pref_camera_dis_key"
+        camera:singleIcon="@drawable/ic_eis_menu"
+        camera:title="@string/pref_camera_dis_title" />
     <IconListPreference
-            camera:key="pref_camera_filter_mode_key"
-            camera:defaultValue="@string/pref_camera_coloreffect_default"
-            camera:title="@string/pref_camera_filter_mode_title"
-            camera:entries="@array/pref_camera_filter_mode_entries"
-            camera:singleIcon="@drawable/ic_settings_filter"
-            camera:icons="@array/pref_filter_mode_icons"
-            camera:largeIcons="@array/pref_filter_mode_icons"
-            camera:entryValues="@array/pref_camera_filter_mode_entryvalues" />
+        camera:defaultValue="@string/pref_camera_coloreffect_default"
+        camera:entries="@array/pref_camera_filter_mode_entries"
+        camera:entryValues="@array/pref_camera_filter_mode_entryvalues"
+        camera:icons="@array/pref_filter_mode_icons"
+        camera:key="pref_camera_filter_mode_key"
+        camera:largeIcons="@array/pref_filter_mode_icons"
+        camera:singleIcon="@drawable/ic_settings_filter"
+        camera:title="@string/pref_camera_filter_mode_title" />
     <IconListPreference
-            camera:key="pref_camera_coloreffect_key"
-            camera:defaultValue="@string/pref_camera_coloreffect_default"
-            camera:title="@string/pref_camera_coloreffect_title"
-            camera:entries="@array/pref_camera_coloreffect_entries"
-            camera:thumbnails="@array/coloreffect_thumbnails"
-            camera:singleIcon="@drawable/ic_settings_filter"
-            camera:entryValues="@array/pref_camera_coloreffect_entryvalues" />
+        camera:defaultValue="@string/pref_camera_coloreffect_default"
+        camera:entries="@array/pref_camera_coloreffect_entries"
+        camera:entryValues="@array/pref_camera_coloreffect_entryvalues"
+        camera:key="pref_camera_coloreffect_key"
+        camera:singleIcon="@drawable/ic_settings_filter"
+        camera:thumbnails="@array/coloreffect_thumbnails"
+        camera:title="@string/pref_camera_coloreffect_title" />
     <IconListPreference
-            camera:key="pref_camera_facedetection_key"
-            camera:defaultValue="@string/pref_camera_facedetection_default"
-            camera:title="@string/pref_camera_facedetection_title"
-            camera:entries="@array/pref_camera_facedetection_entries"
-            camera:singleIcon="@drawable/ic_settings_facerec"
-            camera:entryValues="@array/pref_camera_facedetection_entryvalues" />
+        camera:defaultValue="@string/pref_camera_facedetection_default"
+        camera:entries="@array/pref_camera_facedetection_entries"
+        camera:entryValues="@array/pref_camera_facedetection_entryvalues"
+        camera:key="pref_camera_facedetection_key"
+        camera:singleIcon="@drawable/ic_settings_facerec"
+        camera:title="@string/pref_camera_facedetection_title" />
     <IconListPreference
-            camera:key="pref_camera_hfr_key"
-            camera:defaultValue="@string/pref_camera_hfr_default"
-            camera:title="@string/pref_camera_hfr_title"
-            camera:singleIcon="@drawable/ic_settings_fps"
-            camera:entries="@array/pref_camera_hfr_entries"
-            camera:entryValues="@array/pref_camera_hfr_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_hfr_default"
+        camera:entries="@array/pref_camera_hfr_entries"
+        camera:entryValues="@array/pref_camera_hfr_entryvalues"
+        camera:key="pref_camera_hfr_key"
+        camera:singleIcon="@drawable/ic_settings_fps"
+        camera:title="@string/pref_camera_hfr_title" />
     <ListPreference
-            camera:key="pref_camera_noise_reduction_key"
-            camera:defaultValue="@string/pref_camera_noise_reduction_default"
-            camera:title="@string/pref_camera_noise_reduction_title"
-            camera:entries="@array/pref_camera_noise_reduction_entries"
-            camera:entryValues="@array/pref_camera_noise_reduction_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_noise_reduction_default"
+        camera:entries="@array/pref_camera_noise_reduction_entries"
+        camera:entryValues="@array/pref_camera_noise_reduction_entryvalues"
+        camera:key="pref_camera_noise_reduction_key"
+        camera:title="@string/pref_camera_noise_reduction_title" />
     <ListPreference
-            camera:key="pref_camera_see_more_key"
-            camera:defaultValue="@string/pref_camera_see_more_default"
-            camera:title="@string/pref_camera_see_more_title"
-            camera:entries="@array/pref_camera_see_more_entries"
-            camera:entryValues="@array/pref_camera_see_more_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_see_more_default"
+        camera:entries="@array/pref_camera_see_more_entries"
+        camera:entryValues="@array/pref_camera_see_more_entryvalues"
+        camera:key="pref_camera_see_more_key"
+        camera:title="@string/pref_camera_see_more_title" />
     <ListPreference
-            camera:key="pref_camera_video_hdr_key"
-            camera:defaultValue="@string/pref_camera_video_hdr_default"
-            camera:title="@string/pref_camera_video_hdr_title"
-            camera:entries="@array/pref_camera_video_hdr_entries"
-            camera:entryValues="@array/pref_camera_video_hdr_entryvalues"/>
+        camera:defaultValue="@string/pref_camera_video_hdr_default"
+        camera:entries="@array/pref_camera_video_hdr_entries"
+        camera:entryValues="@array/pref_camera_video_hdr_entryvalues"
+        camera:key="pref_camera_video_hdr_key"
+        camera:title="@string/pref_camera_video_hdr_title" />
     <ListPreference
-            camera:key="pref_camera_videosnapsize_key"
-            camera:defaultValue="@string/pref_camera_videosnapsize_default"
-            camera:title="@string/pref_camera_picturesize_title"
-            camera:entries="@array/pref_camera_video_snapsize_entries"
-            camera:entryValues="@array/pref_camera_video_snapsize_entryvalues" />
+        camera:defaultValue="@string/pref_camera_videosnapsize_default"
+        camera:entries="@array/pref_camera_video_snapsize_entries"
+        camera:entryValues="@array/pref_camera_video_snapsize_entryvalues"
+        camera:key="pref_camera_videosnapsize_key"
+        camera:title="@string/pref_camera_picturesize_title" />
     <IconListPreference
-            camera:key="pref_camera_savepath_key"
-            camera:defaultValue="@string/pref_camera_savepath_default"
-            camera:title="@string/pref_camera_savepath_title"
-            camera:entries="@array/pref_camera_savepath_entries"
-            camera:singleIcon="@drawable/ic_settings_storage"
-            camera:entryValues="@array/pref_camera_savepath_entryvalues" />
+        camera:defaultValue="@string/pref_camera_savepath_default"
+        camera:entries="@array/pref_camera_savepath_entries"
+        camera:entryValues="@array/pref_camera_savepath_entryvalues"
+        camera:key="pref_camera_savepath_key"
+        camera:singleIcon="@drawable/ic_settings_storage"
+        camera:title="@string/pref_camera_savepath_title" />
     <ListPreference
-            camera:key="pref_camera_video_rotation_key"
-            camera:defaultValue="@string/pref_camera_video_rotation_default"
-            camera:title="@string/pref_camera_video_rotation_title"
-            camera:entries="@array/pref_camera_video_rotation_entries"
-            camera:entryValues="@array/pref_camera_video_rotation_entryvalues" />
+        camera:defaultValue="@string/pref_camera_video_rotation_default"
+        camera:entries="@array/pref_camera_video_rotation_entries"
+        camera:entryValues="@array/pref_camera_video_rotation_entryvalues"
+        camera:key="pref_camera_video_rotation_key"
+        camera:title="@string/pref_camera_video_rotation_title" />
 
     <ListPreference
-            camera:key="pref_camera_zoom_key"
-            camera:defaultValue="@string/pref_camera_zoom_default"
-            camera:title="@string/pref_camera_zoom_title"
-            camera:entries="@array/pref_camera_zoom_entries"
-            camera:entryValues="@array/pref_camera_zoom_entryvalues" />
+        camera:defaultValue="@string/pref_camera_zoom_default"
+        camera:entries="@array/pref_camera_zoom_entries"
+        camera:entryValues="@array/pref_camera_zoom_entryvalues"
+        camera:key="pref_camera_zoom_key"
+        camera:title="@string/pref_camera_zoom_title" />
 
     <IconListPreference
-            camera:key="pref_video_focusmode_key"
-            camera:defaultValue="@array/pref_video_focusmode_default_array"
-            camera:title="@string/pref_camera_focusmode_title"
-            camera:singleIcon="@drawable/ic_settings_focus"
-            camera:entries="@array/pref_video_focusmode_entries"
-            camera:entryValues="@array/pref_video_focusmode_entryvalues" />
+        camera:defaultValue="@array/pref_video_focusmode_default_array"
+        camera:entries="@array/pref_video_focusmode_entries"
+        camera:entryValues="@array/pref_video_focusmode_entryvalues"
+        camera:key="pref_video_focusmode_key"
+        camera:singleIcon="@drawable/ic_settings_focus"
+        camera:title="@string/pref_camera_focusmode_title" />
     <ListPreference
-            camera:key="pref_video_touchfocus_duration_key"
-            camera:defaultValue="@string/pref_video_touchfocus_duration_default"
-            camera:title="@string/pref_camera_touchfocus_duration_title"
-            camera:entries="@array/pref_camera_touchfocus_duration_entries"
-            camera:entryValues="@array/pref_camera_touchfocus_duration_entry_values" />
+        camera:defaultValue="@string/pref_video_touchfocus_duration_default"
+        camera:entries="@array/pref_camera_touchfocus_duration_entries"
+        camera:entryValues="@array/pref_camera_touchfocus_duration_entry_values"
+        camera:key="pref_video_touchfocus_duration_key"
+        camera:title="@string/pref_camera_touchfocus_duration_title" />
     <ListPreference
-            camera:key="pref_camera_antibanding_key"
-            camera:defaultValue="@string/pref_camera_antibanding_default"
-            camera:title="@string/pref_camera_antibanding_title"
-            camera:entries="@array/pref_camera_antibanding_entries"
-            camera:entryValues="@array/pref_camera_antibanding_entryvalues" />
+        camera:defaultValue="@string/pref_camera_antibanding_default"
+        camera:entries="@array/pref_camera_antibanding_entries"
+        camera:entryValues="@array/pref_camera_antibanding_entryvalues"
+        camera:key="pref_camera_antibanding_key"
+        camera:title="@string/pref_camera_antibanding_title" />
 </PreferenceGroup>

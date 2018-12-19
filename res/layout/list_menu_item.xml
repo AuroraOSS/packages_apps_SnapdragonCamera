@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (c) 2014, The Linux Foundation. All rights reserved.
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (c) 2014, The Linux Foundation. All rights reserved.
 
      Redistribution and use in source and binary forms, with or without
      modification, are permitted provided that the following conditions are
@@ -30,7 +29,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/list_image"
@@ -46,23 +45,16 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/list_image"
         android:layout_toEndOf="@+id/list_image"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/colorTextPrimary" />
 
     <TextView
         android:id="@+id/current_setting"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
-        android:layout_marginTop="1dip"
+        android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/list_image"
-        android:shadowColor="@android:color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="@string/crop_save"
-        android:textColor="#33b5e5"
-        android:textSize="10dip"
-        android:textStyle="bold" />
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp" />
 
 </com.android.camera.ui.ListMenuItem>

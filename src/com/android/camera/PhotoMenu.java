@@ -1293,7 +1293,7 @@ public class PhotoMenu extends MenuController
                                 v1.setBackground(null);
                             }
                             ImageView image = (ImageView) v.findViewById(R.id.image);
-                            image.setBackgroundColor(0xff33b5e5);
+                            image.setBackgroundColor(v.getResources().getColor(R.color.colorAccent));
                         }
                     }
                     return true;
@@ -1302,7 +1302,7 @@ public class PhotoMenu extends MenuController
 
             views[j] = imageView;
             if (i == init)
-                imageView.setBackgroundColor(0xff33b5e5);
+                imageView.setBackgroundColor(imageView.getResources().getColor(R.color.colorAccent));
             TextView label = (TextView) layout2.findViewById(R.id.label);
             imageView.setImageResource(thumbnails[i]);
             label.setText(entries[i]);
@@ -1392,7 +1392,6 @@ public class PhotoMenu extends MenuController
                 R.layout.list_sub_menu, null, false);
         basic.initialize(pref, y);
         basic.setSettingChangedListener(this);
-        basic.setAlpha(0f);
         mListSubMenu = basic;
         mUI.removeLevel2();
         if (mPopupStatus == POPUP_SECOND_LEVEL) {

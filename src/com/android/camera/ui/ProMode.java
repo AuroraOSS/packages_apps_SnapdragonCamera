@@ -62,7 +62,7 @@ public class ProMode extends View {
     private static final int DOT_SIZE = 10;
     private static final int[] wbIcons = {R.drawable.auto, R.drawable.incandecent,
             R.drawable.fluorescent, R.drawable.sunlight, R.drawable.cloudy};
-    private static final int[] wbIconsBlue = {R.drawable.auto_blue, R.drawable.incandecent_blue,
+    private static final int[] wbIconsBlue = {R.drawable.auto_on, R.drawable.incandecent_blue,
             R.drawable.fluorescent_blue, R.drawable.sunlight_blue, R.drawable.cloudy_blue};
     private static final int WB_ICON_SIZE = 80;
     private PathMeasure mCurveMeasure;

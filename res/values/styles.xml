@@ -51,7 +51,6 @@
 
     <style name="Material.ActionBar" parent="android:Widget.Material.ActionBar">
         <item name="android:displayOptions">useLogo|showHome|homeAsUp</item>
-        <item name="android:background">@drawable/actionbar_translucent</item>
         <item name="android:backgroundStacked">@null</item>
     </style>
 

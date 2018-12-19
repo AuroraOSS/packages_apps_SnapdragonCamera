@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!-- Copyright (c) 2014, The Linux Foundation. All rights reserved.
 
      Redistribution and use in source and binary forms, with or without
@@ -29,11 +30,9 @@
 <com.android.camera.ui.ListSubMenu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:alpha="0.85"
-    android:background="@drawable/list_border"
-    android:divider="@color/list_divider_color"
-    android:dividerHeight="1dp"
+    android:background="@color/colorBackgroundDark"
     android:listSelector="@drawable/list_selector"
-    android:scrollbars="none" >
+    android:choiceMode="singleChoice"
+    android:scrollbars="none">
 
 </com.android.camera.ui.ListSubMenu>
