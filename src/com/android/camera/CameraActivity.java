@@ -382,7 +382,8 @@ public class CameraActivity extends Activity
     }
 
     public boolean isDeveloperMenuEnabled() {
-        return mDeveloperMenuEnabled;
+        //TODO: Make it optional
+        return true;
     }
 
     public void enableDeveloperMenu() {
