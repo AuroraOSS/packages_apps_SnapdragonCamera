@@ -492,7 +492,7 @@ public class PanoCaptureUI implements
             }
         });
         mSceneModeInstructionalDialog =
-                new AlertDialog.Builder(mActivity, AlertDialog.THEME_HOLO_LIGHT)
+                new AlertDialog.Builder(mActivity, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
                         .setView(view).create();
         try {
             mSceneModeInstructionalDialog.show();
