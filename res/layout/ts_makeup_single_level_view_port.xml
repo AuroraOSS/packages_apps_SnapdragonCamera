@@ -103,8 +103,7 @@
                     android:shadowRadius="2"
                     android:singleLine="true"
                     android:text="@string/pref_camera_tsmakeup_level_clean"
-                    android:textColor="@android:color/white"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.android.camera.ui.RotateLayout>
@@ -144,8 +143,7 @@
                     android:shadowRadius="2"
                     android:singleLine="true"
                     android:text="@string/pref_camera_tsmakeup_level_whiten"
-                    android:textColor="@android:color/white"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.android.camera.ui.RotateLayout>

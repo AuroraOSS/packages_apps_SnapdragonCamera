@@ -16,12 +16,20 @@
 -->
 <resources>
 
-    <color name="colorAccent">#fc636b</color>
+    <color name="colorAccent">#2979ff</color>
 
-    <color name="colorBackground">#343434</color>
-    <color name="colorBackgroundDark">#242424</color>
+    <color name="colorBackground">#FFF</color>
+    <color name="colorBackgroundDark">#EEE</color>
+
+    <color name="colorSelected">#865200</color>
 
     <color name="colorTransparent">#00000000</color>
-    <color name="colorTextPrimary">#FFFFFF</color>
-    <color name="colorTextSecondary">@color/colorAccent</color>
+    <color name="colorTextPrimary">#242424</color>
+    <color name="colorTextSecondary">#545454</color>
+
+    <color name="colorControlPanel">@color/colorBackground</color>
+    <color name="colorControlPanelAlt">#44FFFFFF</color>
+
+    <color name="colorBorderLight">#EEE</color>
+    <color name="colorBorderDark">#545454</color>
 </resources>

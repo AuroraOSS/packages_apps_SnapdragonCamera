@@ -153,10 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="130dip"
-            android:background="#3F000000"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:visibility="gone" />
     </FrameLayout>

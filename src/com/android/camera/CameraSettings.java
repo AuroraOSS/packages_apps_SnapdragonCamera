@@ -1267,10 +1267,7 @@ public class CameraSettings {
             version = 2;
         }
         if (version == 2) {
-            editor.putString(KEY_RECORD_LOCATION,
-                    pref.getBoolean(KEY_RECORD_LOCATION, false)
-                    ? RecordLocationPreference.VALUE_ON
-                    : RecordLocationPreference.VALUE_NONE);
+            editor.putString(RecordLocationPreference.VALUE_NONE,"");
             version = 3;
         }
         if (version == 3) {

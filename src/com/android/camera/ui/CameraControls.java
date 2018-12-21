@@ -727,9 +727,9 @@ public class CameraControls extends RotatableLayout {
                 v.setVisibility(View.VISIBLE);
             }
         ((ModuleSwitcher) mSwitcher).removePopup();
-        AnimationDrawable shutterAnim = (AnimationDrawable) mShutter.getBackground();
+        /*AnimationDrawable shutterAnim = (AnimationDrawable) mShutter.getBackground();
         if (shutterAnim != null)
-            shutterAnim.stop();
+            shutterAnim.stop();*/
 
         mMenu.setVisibility(View.VISIBLE);
         mIndicators.setVisibility(View.VISIBLE);
@@ -1024,7 +1024,7 @@ public class CameraControls extends RotatableLayout {
             default:
                 break;
         }
-        mBackgroundView.setBackgroundResource(R.drawable.switcher_bg);
+        mBackgroundView.setBackgroundResource(R.drawable.switcher_background);
     }
 
     private void layoutRemaingPhotos() {
@@ -1080,9 +1080,9 @@ public class CameraControls extends RotatableLayout {
             int r = CameraUtil.determineRatio(ratio);
             mPreviewRatio = r;
             if (mPreviewRatio == CameraUtil.RATIO_4_3 && mTopMargin != 0) {
-                mPaint.setColor(getResources().getColor(R.color.camera_control_bg_opaque));
+                mPaint.setColor(getResources().getColor(R.color.colorControlPanel));
             } else {
-                mPaint.setColor(getResources().getColor(R.color.camera_control_bg_transparent));
+                mPaint.setColor(getResources().getColor(R.color.colorControlPanelAlt));
             }
         }
         invalidate();

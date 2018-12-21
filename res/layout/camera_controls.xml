@@ -47,7 +47,8 @@
     <com.android.camera.ui.ModuleSwitcher
         android:id="@+id/camera_switcher"
         style="@style/SwitcherButton"
-        android:layout_gravity="bottom|left"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="2dip"
         android:contentDescription="@string/accessibility_mode_picker"
         android:scaleType="center" />
@@ -62,7 +63,8 @@
         android:contentDescription="@string/accessibility_shutter_button"
         android:focusable="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/btn_new_shutter" />
+        android:src="@drawable/btn_new_shutter"
+        android:tint="@color/colorSelected" />
 
     <ImageView
         android:id="@+id/video_button"
@@ -126,14 +128,13 @@
             android:id="@+id/remaining_photos_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:textColor="@android:color/white"
+            android:textStyle="bold"
             android:visibility="gone" />
 
         <ImageView
             android:id="@+id/remaining_photos_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             android:src="@drawable/remaining_sheets"
             android:visibility="gone" />
     </LinearLayout>

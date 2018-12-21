@@ -27,10 +27,10 @@
      IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
-
-    <stroke
-        android:width="1dip"
-        android:color="#cc33b5e5" />
+    android:shape="oval">
+    <size
+        android:width="100dp"
+        android:height="100dp" />
+    <solid android:color="@color/colorSelected" />
 
 </shape>

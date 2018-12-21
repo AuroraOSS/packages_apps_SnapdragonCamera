@@ -114,7 +114,7 @@ public class OneUICameraControls extends RotatableLayout {
         setClipChildren(false);
 
         setMeasureAllChildren(true);
-        mPaint.setColor(getResources().getColor(R.color.camera_control_bg_transparent));
+        mPaint.setColor(getResources().getColor(R.color.colorControlPanelAlt));
 
         mTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics());
         mBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());

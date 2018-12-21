@@ -24,11 +24,13 @@ import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewPropertyAnimator;
+import android.widget.GridLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.GridView;
@@ -583,20 +585,17 @@ public class VideoMenu extends MenuController
         mUI.dismissSceneModeMenu();
         LinearLayout previewMenuLayout = new LinearLayout(mActivity);
         mUI.setPreviewMenuLayout(previewMenuLayout);
-        ViewGroup.LayoutParams params = null;
-        if (portrait) {
-            params = new ViewGroup.LayoutParams(size, LayoutParams.MATCH_PARENT);
+
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
             previewMenuLayout.setLayoutParams(params);
             ((ViewGroup) mUI.getRootView()).addView(previewMenuLayout);
-        } else {
-            params = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, size);
-            previewMenuLayout.setLayoutParams(params);
-            ((ViewGroup) mUI.getRootView()).addView(previewMenuLayout);
-            previewMenuLayout.setY(display.getHeight() - size);
-        }
-        basic.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT));
-        LinearLayout layout = (LinearLayout) basic.findViewById(R.id.layout);
+
+        FrameLayout.LayoutParams basicParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT);
+        basicParams.gravity = Gravity.CENTER;
+        basic.setLayoutParams(basicParams);
+
+        GridLayout layout = (GridLayout) basic.findViewById(R.id.layout);
 
         final View[] views = new View[entries.length];
         int init = pref.getCurrentIndex();

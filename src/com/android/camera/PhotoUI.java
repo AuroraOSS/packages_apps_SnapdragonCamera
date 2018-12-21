@@ -24,6 +24,7 @@ import org.codeaurora.snapcam.R;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -584,7 +585,9 @@ public class PhotoUI implements PieListener,
             @Override
             public void onClick(View v) {
                 if (mMenu != null) {
-                    mMenu.openFirstLevel();
+                    //mMenu.openFirstLevel();
+                    Intent i = new Intent(mActivity,SettingsActivity.class);
+                    mActivity.startActivity(i);
                 }
             }
         });

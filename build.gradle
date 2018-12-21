@@ -63,6 +63,7 @@ android {
 
     sourceSets {
         main {
+            assets.srcDirs = ['assets']
             res.srcDirs = ['res', 'res_p']
             java.srcDirs = ['src', 'src_pd', 'src_pd_gcam', 'src_wrapper', '../hex-camlibs/XMPCore/src']
             manifest.srcFile 'AndroidManifest.xml'

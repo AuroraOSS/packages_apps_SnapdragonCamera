@@ -28,25 +28,20 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.LinearLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.android.camera.util.CameraUtil;
-import com.android.camera.util.GcamHelper;
 import com.android.camera.util.PhotoSphereHelper;
 import com.android.camera.util.UsageStatistics;
+
 import org.codeaurora.snapcam.R;
 
 public class ModuleSwitcher extends RotateImageView
         implements OnTouchListener {
-
-    @SuppressWarnings("unused")
-    private static final String TAG = "CAM_Switcher";
-    private static final int SWITCHER_POPUP_ANIM_DURATION = 200;
 
     public static final int PHOTO_MODULE_INDEX = 0;
     public static final int VIDEO_MODULE_INDEX = 1;
@@ -55,10 +50,9 @@ public class ModuleSwitcher extends RotateImageView
     public static final int GCAM_MODULE_INDEX = 4;
     public static final int CAPTURE_MODULE_INDEX = 5;
     public static final int PANOCAPTURE_MODULE_INDEX = 6;
-
-    private boolean mTouchEnabled = true;
-    private boolean mIsVisible = true;
-
+    @SuppressWarnings("unused")
+    private static final String TAG = "CAM_Switcher";
+    private static final int SWITCHER_POPUP_ANIM_DURATION = 200;
     private static final int[] DRAW_IDS = {
             R.drawable.ic_switch_camera,
             R.drawable.ic_switch_video,
@@ -66,13 +60,8 @@ public class ModuleSwitcher extends RotateImageView
             R.drawable.ic_switch_photosphere,
             R.drawable.ic_switch_gcam,
     };
-
-    public interface ModuleSwitchListener {
-        public void onModuleSelected(int i);
-
-        public void onShowSwitcherPopup();
-    }
-
+    private boolean mTouchEnabled = true;
+    private boolean mIsVisible = true;
     private ModuleSwitchListener mListener;
     private int mCurrentIndex;
     private int[] mModuleIds;
@@ -83,10 +72,8 @@ public class ModuleSwitcher extends RotateImageView
     private boolean mShowingPopup;
     private boolean mNeedsAnimationSetup;
     private Drawable mIndicator;
-
     private float mTranslationX = 0;
     private float mTranslationY = 0;
-
     private AnimatorListener mHideAnimationListener;
     private AnimatorListener mShowAnimationListener;
 
@@ -139,13 +126,7 @@ public class ModuleSwitcher extends RotateImageView
 
     public void setCurrentIndex(int i) {
         mCurrentIndex = i;
-        if (i == GCAM_MODULE_INDEX) {
-          setImageResource(R.drawable.ic_switch_camera);
-        } if (i== PANOCAPTURE_MODULE_INDEX) {
-            return;
-        } else {
-          setImageResource(mDrawIds[i]);
-        }
+        setImageResource(R.drawable.ic_switcher_menu);
     }
 
     public void setSwitchListener(ModuleSwitchListener l) {
@@ -288,7 +269,6 @@ public class ModuleSwitcher extends RotateImageView
             ((ViewGroup) mParent).removeView(mPopup);
             mPopup = null;
         }
-        setAlpha(1f);
     }
 
     @Override
@@ -433,5 +413,11 @@ public class ModuleSwitcher extends RotateImageView
         animate().alpha(0f).setDuration(SWITCHER_POPUP_ANIM_DURATION)
                 .setListener(mShowAnimationListener);
         return true;
+    }
+
+    public interface ModuleSwitchListener {
+        public void onModuleSelected(int i);
+
+        public void onShowSwitcherPopup();
     }
 }

@@ -37,32 +37,30 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.view.Window;
 import android.view.WindowManager;
-import android.util.Log;
 import android.widget.Toast;
 
-import org.codeaurora.snapcam.R;
 import com.android.camera.util.CameraUtil;
 
+import org.codeaurora.snapcam.R;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Arrays;
 
 public class SettingsActivity extends PreferenceActivity {
+    private final int DEVELOPER_MENU_TOUCH_COUNT = 5;
     private SettingsManager mSettingsManager;
     private SharedPreferences mSharedPreferences;
     private boolean mDeveloperMenuEnabled;
     private int privateCounter = 0;
-    private final int DEVELOPER_MENU_TOUCH_COUNT = 10;
-
     private SharedPreferences.OnSharedPreferenceChangeListener mSharedPreferenceChangeListener
             = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
@@ -75,7 +73,7 @@ public class SettingsActivity extends PreferenceActivity {
                 boolean checked = ((SwitchPreference) p).isChecked();
                 value = checked ? "on" : "off";
                 mSettingsManager.setValue(key, value);
-            } else if (p instanceof ListPreference){
+            } else if (p instanceof ListPreference) {
                 value = ((ListPreference) p).getValue();
                 mSettingsManager.setValue(key, value);
             }
@@ -92,23 +90,23 @@ public class SettingsActivity extends PreferenceActivity {
         }
     };
 
-    private SettingsManager.Listener mListener = new SettingsManager.Listener(){
+    private SettingsManager.Listener mListener = new SettingsManager.Listener() {
         @Override
-        public void onSettingsChanged(List<SettingsManager.SettingState> settings){
+        public void onSettingsChanged(List<SettingsManager.SettingState> settings) {
             Map<String, SettingsManager.Values> map = mSettingsManager.getValuesMap();
-            for( SettingsManager.SettingState state : settings) {
+            for (SettingsManager.SettingState state : settings) {
                 SettingsManager.Values values = map.get(state.key);
                 boolean enabled = values.overriddenValue == null;
                 Preference pref = findPreference(state.key);
                 if (pref != null) {
                     pref.setEnabled(enabled);
                 }
-                if ( pref.getKey().equals(SettingsManager.KEY_QCFA) ) {
+                if (pref.getKey().equals(SettingsManager.KEY_QCFA)) {
                     mSettingsManager.updateQcfaPictureSize();
                     updatePreference(SettingsManager.KEY_PICTURE_SIZE);
                 }
 
-                if ( pref.getKey().equals(SettingsManager.KEY_VIDEO_HDR_VALUE) ) {
+                if (pref.getKey().equals(SettingsManager.KEY_VIDEO_HDR_VALUE)) {
                     ListPreference autoHdrPref = (ListPreference) findPreference(
                             mSettingsManager.KEY_AUTO_HDR);
                     if (pref.getSummary().equals("enable")) {
@@ -123,32 +121,35 @@ public class SettingsActivity extends PreferenceActivity {
             }
         }
     };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        Window window = getWindow();
-        window.setFlags(flag, flag);
+
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(getResources().getString(R.string.settings_title));
         }
+
         final boolean isSecureCamera = getIntent().getBooleanExtra(
                 CameraUtil.KEY_IS_SECURE_CAMERA, false);
         if (isSecureCamera) {
             setShowInLockScreen();
         }
+
         mSettingsManager = SettingsManager.getInstance();
         if (mSettingsManager == null) {
             finish();
             return;
         }
+
         mSettingsManager.registerListener(mListener);
         addPreferencesFromResource(R.xml.setting_menu_preferences);
 
         mSharedPreferences = getPreferenceManager().getSharedPreferences();
         mDeveloperMenuEnabled = mSharedPreferences.getBoolean(SettingsManager.KEY_DEVELOPER_MENU, false);
+        ;
 
         filterPreferences();
         initializePreferences();
@@ -159,30 +160,25 @@ public class SettingsActivity extends PreferenceActivity {
             PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().getPreference(i);
             for (int j = 0; j < category.getPreferenceCount(); j++) {
                 Preference pref = category.getPreference(j);
-                pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        if (!mDeveloperMenuEnabled) {
-                            if (preference.getKey().equals("version_info")) {
-                                privateCounter++;
-                                if (privateCounter >= DEVELOPER_MENU_TOUCH_COUNT) {
-                                    mDeveloperMenuEnabled = true;
-                                    mSharedPreferences.edit().putBoolean(SettingsManager.KEY_DEVELOPER_MENU, true).apply();
-                                    Toast.makeText(SettingsActivity.this, "Camera developer option is enabled now", Toast.LENGTH_SHORT).show();
-                                    recreate();
-                                }
-                            } else {
-                                privateCounter = 0;
+                pref.setOnPreferenceClickListener(preference -> {
+                    if (!mDeveloperMenuEnabled) {
+                        if (preference.getKey().equals("version_info")) {
+                            privateCounter++;
+                            if (privateCounter >= DEVELOPER_MENU_TOUCH_COUNT) {
+                                mDeveloperMenuEnabled = true;
+                                mSharedPreferences.edit().putBoolean(SettingsManager.KEY_DEVELOPER_MENU, true).apply();
+                                Toast.makeText(SettingsActivity.this, "Camera developer option is enabled now", Toast.LENGTH_SHORT).show();
+                                recreate();
                             }
+                        } else {
+                            privateCounter = 0;
                         }
-
-                        if ( preference.getKey().equals(SettingsManager.KEY_RESTORE_DEFAULT) ) {
-                            onRestoreDefaultSettingsClick();
-                        }
-                        return false;
                     }
 
+                    if (preference.getKey().equals(SettingsManager.KEY_RESTORE_DEFAULT)) {
+                        onRestoreDefaultSettingsClick();
+                    }
+                    return false;
                 });
             }
         }
@@ -192,15 +188,13 @@ public class SettingsActivity extends PreferenceActivity {
     private void filterPreferences() {
         String[] categories = {"photo", "video", "general", "developer"};
         Set<String> set = mSettingsManager.getFilteredKeys();
+
         if (!mDeveloperMenuEnabled) {
             set.add(SettingsManager.KEY_MONO_PREVIEW);
             set.add(SettingsManager.KEY_MONO_ONLY);
             set.add(SettingsManager.KEY_CLEARSIGHT);
 
             PreferenceGroup developer = (PreferenceGroup) findPreference("developer");
-            //Before restore settings,if current is not developer mode,the developer
-            // preferenceGroup has been removed when enter camera by default .So duplicate remove
-            // it will cause crash.
             if (developer != null) {
                 PreferenceScreen parent = getPreferenceScreen();
                 parent.removePreference(developer);
@@ -209,10 +203,10 @@ public class SettingsActivity extends PreferenceActivity {
 
         CharSequence[] entries = mSettingsManager.getEntries(SettingsManager.KEY_SCENE_MODE);
         List<CharSequence> list = Arrays.asList(entries);
-        if (mDeveloperMenuEnabled && !list.contains("HDR")){
-            Preference p = findPreference("pref_camera2_hdr_key");
-            if (p != null){
-                PreferenceGroup developer = (PreferenceGroup)findPreference("developer");
+        if (mDeveloperMenuEnabled && !list.contains("HDR")) {
+            Preference p = findPreference("pref_camera_hdr_key");
+            if (p != null) {
+                PreferenceGroup developer = (PreferenceGroup) findPreference("developer");
                 developer.removePreference(p);
             }
         }
@@ -236,6 +230,7 @@ public class SettingsActivity extends PreferenceActivity {
         updatePreference(SettingsManager.KEY_VIDEO_ENCODER);
         updatePreference(SettingsManager.KEY_ZOOM);
         updatePreference(SettingsManager.KEY_SWITCH_CAMERA);
+
         updatePictureSizePreferenceButton();
         updateVideoHDRPreference();
 
@@ -264,8 +259,6 @@ public class SettingsActivity extends PreferenceActivity {
 
         try {
             String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            int index = versionName.indexOf(' ');
-            versionName = versionName.substring(0, index);
             findPreference("version_info").setSummary(versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -273,7 +266,7 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private void updateVideoHDRPreference() {
-        ListPreference pref = (ListPreference)findPreference(SettingsManager.KEY_VIDEO_HDR_VALUE);
+        ListPreference pref = (ListPreference) findPreference(SettingsManager.KEY_VIDEO_HDR_VALUE);
         if (pref == null) {
             return;
         }
@@ -281,26 +274,26 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private void updatePreferenceButton(String key) {
-        Preference pref =  findPreference(key);
-        if (pref != null ) {
-            if( pref instanceof ListPreference) {
+        Preference pref = findPreference(key);
+        if (pref != null) {
+            if (pref instanceof ListPreference) {
                 ListPreference pref2 = (ListPreference) pref;
                 if (pref2.getEntryValues().length == 1) {
                     pref2.setEnabled(false);
                 } else {
                     pref2.setEnabled(true);
                 }
-            }else {
+            } else {
                 pref.setEnabled(false);
             }
         }
     }
 
     private void updatePictureSizePreferenceButton() {
-        ListPreference picturePref = (ListPreference)findPreference(
+        ListPreference picturePref = (ListPreference) findPreference(
                 SettingsManager.KEY_PICTURE_SIZE);
         String sceneMode = mSettingsManager.getValue(SettingsManager.KEY_SCENE_MODE);
-        if ( sceneMode != null && picturePref != null ){
+        if (sceneMode != null && picturePref != null) {
             int sceneModeInt = Integer.parseInt(sceneMode);
             if (sceneModeInt == SettingsManager.SCENE_MODE_BOKEH_INT) {
                 picturePref.setValue("4000x3000");
@@ -318,7 +311,7 @@ public class SettingsActivity extends PreferenceActivity {
                 pref.setEntries(mSettingsManager.getEntries(key));
                 pref.setEntryValues(mSettingsManager.getEntryValues(key));
                 int idx = mSettingsManager.getValueIndex(key);
-                if (idx < 0 ) {
+                if (idx < 0) {
                     idx = 0;
                 }
                 pref.setValueIndex(idx);
@@ -350,8 +343,8 @@ public class SettingsActivity extends PreferenceActivity {
         params.flags |= WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
         win.setAttributes(params);
     }
-    private
-    void onRestoreDefaultSettingsClick() {
+
+    private void onRestoreDefaultSettingsClick() {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.pref_camera2_restore_default_hint)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

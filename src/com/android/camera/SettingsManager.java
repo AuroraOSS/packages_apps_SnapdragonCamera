@@ -239,6 +239,7 @@ public class SettingsManager implements ListMenu.SettingsListener {
         }
 
         mDependency = parseJson("dependency.json");
+        init();
     }
 
     public static SettingsManager createInstance(Context context) {
@@ -440,11 +441,11 @@ public class SettingsManager implements ListMenu.SettingsListener {
             Set<String> dependsOnSet = mDependendsOnMap.get(keyToTurnOn);
             if (dependsOnSet == null || dependsOnSet.size() == 0) continue;
 
-                values = mValuesMap.get(keyToTurnOn);
-                if (values == null) continue;
-                values.overriddenValue = null;
-                mValuesMap.put(keyToTurnOn, values);
-                changed.add(new SettingState(keyToTurnOn, values));
+            values = mValuesMap.get(keyToTurnOn);
+            if (values == null) continue;
+            values.overriddenValue = null;
+            mValuesMap.put(keyToTurnOn, values);
+            changed.add(new SettingState(keyToTurnOn, values));
         }
 
         for (String keyToTurnOff: turnOff) {
@@ -466,7 +467,7 @@ public class SettingsManager implements ListMenu.SettingsListener {
             mValuesMap.put(keyToTurnOff, newValues);
             changed.add(new SettingState(keyToTurnOff, newValues));
         }
-            updateBackDependency(changedPrefKey, turnOn, turnOff);
+        updateBackDependency(changedPrefKey, turnOn, turnOff);
         return changed;
     }
 
@@ -869,7 +870,7 @@ public class SettingsManager implements ListMenu.SettingsListener {
     }
 
     public CharSequence[] getExposureCompensationEntries() {
-          ListPreference pref = mPreferenceGroup.findPreference(KEY_EXPOSURE);
+        ListPreference pref = mPreferenceGroup.findPreference(KEY_EXPOSURE);
         if (pref == null) return null;
         return pref.getEntries();
     }
@@ -1486,7 +1487,7 @@ public class SettingsManager implements ListMenu.SettingsListener {
     }
 
     private boolean filterSimilarPictureSize(PreferenceGroup group,
-                                                    ListPreference pref) {
+                                             ListPreference pref) {
         pref.filterDuplicated();
         if (pref.getEntries().length <= 1) {
             removePreference(group, pref.getKey());
